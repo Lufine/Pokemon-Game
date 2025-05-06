@@ -20,18 +20,18 @@ const musicControl = document.querySelector(".music-control");
 
 musicControl.addEventListener("click", (event) => {
     event.stopPropagation();
+    event.target.src = event.target.src.includes("on.png")
+        ? "./assets/icons/off.png"
+        : "./assets/icons/on.png";
 
-    event.target.src = `${event.target.src}`.includes('on.png') ? "./assets/icons/off.png" : "./assets/icons/on.png";
-
-    `${event.target.src}`.includes('on.png') ? audio.play() : audio.pause();
+    event.target.src.includes("on.png") ? audio.play() : audio.pause();
 });
 
-reset.addEventListener("click", (event) => {
+reset.addEventListener("click", () => {
     window.location.reload();
-    reset.style.display = "none"; 
 });
 
-function clearCharactersAndFinishGame(){
+function clearCharactersAndFinishGame() {
     ash.style.display = "none";
     charmander.style.display = "none";
     zubat.style.display = "none";
@@ -41,12 +41,10 @@ function clearCharactersAndFinishGame(){
     count.textContent = "";
 }
 
-let currentCount = 30;
-
+let currentCount = 40;
 const interval = setInterval(() => {
-    if(currentCount === 0){
+    if (currentCount === 0) {
         game.style.backgroundImage = "url(./assets/game-over.jpg)";
-
         clearCharactersAndFinishGame();
         clearInterval(interval);
         return;
@@ -55,74 +53,107 @@ const interval = setInterval(() => {
     count.textContent = currentCount;
 }, 1000);
 
-function finishGame(){
-    if(findCharmander && findPikachu && findZubat){
+function finishGame() {
+    if (findCharmander && findPikachu && findZubat) {
         clearCharactersAndFinishGame();
 
         const timeOut = setTimeout(() => {
             game.style.backgroundImage = "url(./assets/winner.jpg)";
-
             clearInterval(interval);
             clearTimeout(timeOut);
-
             audio.pause();
         }, 800);
     }
 }
 
-function getRightPosition(){
+function getRightPosition() {
     return parseInt(ash.style.right.split("px")) || 2;
 }
 
-function getTopPosition(){
+function getTopPosition() {
     return parseInt(ash.style.top.split("px")) || 2;
 }
 
+function getRandomPositionWithDistance(existingPositions, minDistance = 100) {
+    let valid = false;
+    let right, top;
+
+    while (!valid) {
+        right = Math.floor(Math.random() * 770);
+        top = Math.floor(Math.random() * 625);
+
+        valid = existingPositions.every(pos => {
+            const distX = Math.abs(parseInt(pos.right) - right);
+            const distY = Math.abs(parseInt(pos.top) - top);
+            return distX >= minDistance || distY >= minDistance;
+        });
+    }
+
+    return { right: `${right}px`, top: `${top}px` };
+}
+
+const positions = [];
+
+const pikachuPos = getRandomPositionWithDistance(positions);
+positions.push(pikachuPos);
+pikachu.style.right = pikachuPos.right;
+pikachu.style.top = pikachuPos.top;
+
+const charmanderPos = getRandomPositionWithDistance(positions);
+positions.push(charmanderPos);
+charmander.style.right = charmanderPos.right;
+charmander.style.top = charmanderPos.top;
+
+const zubatPos = getRandomPositionWithDistance(positions);
+zubat.style.right = zubatPos.right;
+zubat.style.top = zubatPos.top;
+
+
+function isNear(pokemon) {
+    const ashTop = getTopPosition();
+    const ashRight = getRightPosition();
+    const pokeTop = parseInt(pokemon.style.top);
+    const pokeRight = parseInt(pokemon.style.right);
+
+    const verticalClose = Math.abs(ashTop - pokeTop) <= 40;
+    const horizontalClose = Math.abs(ashRight - pokeRight) <= 40;
+
+    return verticalClose && horizontalClose;
+}
 
 function verifyLookPokemon(to){
-
     finishGame();
 
-    const pokemonRightPosition = to === "ArrowLeft" ? `${getRightPosition() - 64}px` : `${getRightPosition() + 64}px`;
+    if (isNear(charmander) && !findCharmander) {
+        charmander.style.display = "block";
+        findCharmander = true;
+    }
+
+    if (isNear(pikachu) && !findPikachu) {
+        pikachu.style.display = "block";
+        findPikachu = true;
+    }
+
+    if (isNear(zubat) && !findZubat) {
+        zubat.style.display = "block";
+        findZubat = true;
+    }
+
+    const baseRight = to === "ArrowLeft" ? getRightPosition() - 64 : getRightPosition() + 64;
 
     if(findCharmander){
-        const newTopPosition = (to = "ArrowUp" ? `${getTopPosition() + 8}px` : `${getTopPosition() - 8}px`);
-        
-        charmander.style.right = pokemonRightPosition;
-        charmander.style.top = newTopPosition;
+        charmander.style.right = `${baseRight}px`;
+        charmander.style.top = `${getTopPosition() - 8}px`;
     }
 
     if(findPikachu){
-        const newTopPosition = (to = "ArrowUp" ? `${getTopPosition() + 36}px` : `${getTopPosition() - 36}px`);
-        
-        pikachu.style.right = pokemonRightPosition;
-        pikachu.style.top = newTopPosition;
+        pikachu.style.right = `${baseRight}px`;
+        pikachu.style.top = `${getTopPosition() - 46}px`;
     }
 
     if(findZubat){
-        const newTopPosition = (to = "ArrowUp" ? `${getTopPosition() + 72}px` : `${getTopPosition() - 72}px`);
-        
-        zubat.style.right = pokemonRightPosition;
-        zubat.style.top = newTopPosition;
-    }
-
-
-    if((getTopPosition() >= 100 && getTopPosition() <= 200 && getRightPosition() >= 300 && getRightPosition() <= 380)){
-        charmander.style.display = "block";
-        findCharmander = true;
-        return;
-    }
-
-    if((getTopPosition() >= 474 && getTopPosition() <= 594 && getRightPosition() <= 138 && getRightPosition() >= 42)){
-        zubat.style.display = "block";
-        findZubat = true;
-        return;
-    }
-
-    if((getTopPosition() >= 380 && getTopPosition() <= 480 && getRightPosition() >= 546 && getRightPosition() <= 650)){
-        pikachu.style.display = "block";
-        findPikachu = true;
-        return;
+        zubat.style.right = `${baseRight}px`;
+        zubat.style.top = `${getTopPosition() - 72}px`;
     }
 }
 
@@ -132,31 +163,32 @@ body.addEventListener("keydown", (event) => {
 
     switch (event.code) {
         case "ArrowLeft":
-            if (getRightPosition() < 770){
+            if (getRightPosition() < 770) {
                 ash.style.right = `${getRightPosition() + 8}px`;
-                ash.src="./assets/left.png";
+                ash.src = "./assets/left.png";
             }
             break;
         case "ArrowRight":
-            if (getRightPosition() > 2){
+            if (getRightPosition() > 2) {
                 ash.style.right = `${getRightPosition() - 8}px`;
-                ash.src="./assets/right.png";
+                ash.src = "./assets/right.png";
             }
             break;
         case "ArrowDown":
-            if (getTopPosition() < 625){
+            if (getTopPosition() < 625) {
                 ash.style.top = `${getTopPosition() + 8}px`;
-                ash.src="./assets/front.png";
+                ash.src = "./assets/front.png";
             }
             break;
         case "ArrowUp":
-            if (getTopPosition() > 2){
+            if (getTopPosition() > 2) {
                 ash.style.top = `${getTopPosition() - 8}px`;
-                ash.src="./assets/back.png";
+                ash.src = "./assets/back.png";
             }
             break;
         default:
             break;
     }
+
     verifyLookPokemon(event.code);
 });
