@@ -9,6 +9,8 @@ const pikachu = document.querySelector("#pikachu");
 const charmander = document.querySelector("#charmander");
 const zubat = document.querySelector("#zubat");
 
+const scoreboard = document.querySelector(".scoreboard");
+
 let findPikachu = false;
 let findCharmander = false;
 let findZubat = false;
@@ -36,6 +38,7 @@ function clearCharactersAndFinishGame() {
     charmander.style.display = "none";
     zubat.style.display = "none";
     pikachu.style.display = "none";
+    scoreboard.style.display = "none";
 
     reset.style.display = "block";
     count.textContent = "";
@@ -155,6 +158,17 @@ function verifyLookPokemon(to){
         zubat.style.right = `${baseRight}px`;
         zubat.style.top = `${getTopPosition() - 92}px`;
     }
+
+    if (findPikachu) {
+        document.querySelector("#check-pikachu").src = "./assets/icons/check.png";
+    }
+    if (findCharmander) {
+        document.querySelector("#check-charmander").src = "./assets/icons/check.png";
+    }
+    if (findZubat) {
+        document.querySelector("#check-zubat").src = "./assets/icons/check.png";
+    }
+    
 }
 
 
@@ -184,6 +198,9 @@ body.addEventListener("keydown", (event) => {
             if (getTopPosition() < 625) {
                 ash.style.top = `${getTopPosition() + 8}px`;
                 ash.src = "./assets/front.png";
+                pikachu.src = "./assets/pokemons/pikachu-right.png";
+                charmander.src = "./assets/pokemons/charmander-right.png";
+                zubat.src = "./assets/pokemons/zubat-right.png";
             }
             break;
         case "ArrowUp":

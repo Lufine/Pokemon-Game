@@ -1,3 +1,5 @@
+@import url('https://db.onlinewebfonts.com/c/1c1b3fdb31c3460a94aa5f52255b0388?family=Pokemon+Fire+Red+Regular');
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +12,7 @@ body{
     align-items: center;
     justify-content: center;
     min-width: 100vh;
-    font-family: sans-serif;
+    font-family: "Pokemon Fire Red Regular";
     background-color: black;
     position: relative;
 }
@@ -29,6 +31,44 @@ h1{
     top: 48px;
     right: 48px;
 }
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 250px;
+    left: 50px;
+}
+
+.score-item {
+    display: flex;
+    align-items: center;
+}
+
+.character-scoreboard,
+.character-scoreboard-tortos {
+    width: 100px;
+}
+
+.character-scoreboard-tortos {
+    width: 120px;
+    margin-left: -30px;
+}
+
+.cross-scoreboard {
+    width: 40px;
+    margin-left: 10px;
+}
+
+p {
+    color: white;
+    text-align: center;
+    right: inherit;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 
 #reset{
     display: none;
@@ -68,21 +108,21 @@ h1{
 }
 
 #zubat{
-    display: none;
+    /* display: none; */
     width: 100px;
     right: 90px;
     top: 550px;
 }
 
 #pikachu{
-    display: none;
+    /* display: none; */
     width: 70px;
     right: 600px;
     top: 430px;
 }
 
 #charmander{
-    display: none;
+    /* display: none; */
     width: 90px;
     right: 350px;
     top: 150px;
