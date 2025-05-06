@@ -139,21 +139,21 @@ function verifyLookPokemon(to){
         findZubat = true;
     }
 
-    const baseRight = to === "ArrowLeft" ? getRightPosition() - 64 : getRightPosition() + 64;
+    const baseRight = to === "ArrowLeft" ? getRightPosition() - 84 : getRightPosition() + 64;
 
     if(findCharmander){
         charmander.style.right = `${baseRight}px`;
-        charmander.style.top = `${getTopPosition() - 8}px`;
+        charmander.style.top = `${getTopPosition() - 18}px`;
     }
 
     if(findPikachu){
         pikachu.style.right = `${baseRight}px`;
-        pikachu.style.top = `${getTopPosition() - 46}px`;
+        pikachu.style.top = `${getTopPosition() - 36}px`;
     }
 
     if(findZubat){
         zubat.style.right = `${baseRight}px`;
-        zubat.style.top = `${getTopPosition() - 72}px`;
+        zubat.style.top = `${getTopPosition() - 92}px`;
     }
 }
 
@@ -166,12 +166,18 @@ body.addEventListener("keydown", (event) => {
             if (getRightPosition() < 770) {
                 ash.style.right = `${getRightPosition() + 8}px`;
                 ash.src = "./assets/left.png";
+                pikachu.src = "./assets/pokemons/pikachu-left.png";
+                charmander.src = "./assets/pokemons/charmander-left.png";
+                zubat.src = "./assets/pokemons/zubat-left.png";
             }
             break;
         case "ArrowRight":
             if (getRightPosition() > 2) {
                 ash.style.right = `${getRightPosition() - 8}px`;
                 ash.src = "./assets/right.png";
+                pikachu.src = "./assets/pokemons/pikachu-right.png";
+                charmander.src = "./assets/pokemons/charmander-right.png";
+                zubat.src = "./assets/pokemons/zubat-right.png";
             }
             break;
         case "ArrowDown":
@@ -184,6 +190,9 @@ body.addEventListener("keydown", (event) => {
             if (getTopPosition() > 2) {
                 ash.style.top = `${getTopPosition() - 8}px`;
                 ash.src = "./assets/back.png";
+                pikachu.src = "./assets/pokemons/pikachu-right.png";
+                charmander.src = "./assets/pokemons/charmander-right.png";
+                zubat.src = "./assets/pokemons/zubat-right.png";
             }
             break;
         default:
