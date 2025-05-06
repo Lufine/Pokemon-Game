@@ -67,6 +67,8 @@ p {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 20px;
+    max-width: 200px;
+    margin-left: -10%;
 }
 
 
