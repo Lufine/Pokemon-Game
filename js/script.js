@@ -40,8 +40,8 @@ const musicControl = document.querySelector(".music-control");
 musicControl.addEventListener("click", (event) => {
     event.stopPropagation();
     event.target.src = event.target.src.includes("on.png")
-        ? "./assets/icons/off.png"
-        : "./assets/icons/on.png";
+        ? "../assets/icons/off.png"
+        : "../assets/icons/on.png";
 
     event.target.src.includes("on.png") ? audio.play() : audio.pause();
 });
@@ -80,7 +80,7 @@ let currentCount = parseInt(localStorage.getItem('tempoJogo')) || 40;
 
 const interval = setInterval(() => {
     if (currentCount === 0) {
-        // game.style.backgroundImage = "url(./assets/game-over.jpg)";
+        // game.style.backgroundImage = "url(../assets/game-over.jpg)";
         clearCharactersAndFinishGameLose();
         clearInterval(interval);
         showLoseModal();
@@ -109,9 +109,9 @@ function showLoseModal() {
     }
 
     if (missing.length === 0) {
-        missingInfoEl.textContent = "Você encontrou todos os pokémons!";
+        missingInfoEl.textContent = "Voce encontrou todos os pokemons!";
     } else {
-        missingInfoEl.innerHTML = `Você não encontrou:<br><strong>${missing.join(", ")}</strong>`;
+        missingInfoEl.innerHTML = `Voce nao encontrou:<br><strong>${missing.join(", ")}</strong>`;
 
     }
 
@@ -124,7 +124,7 @@ function finishGame() {
         clearCharactersAndFinishGame();
 
         const timeOut = setTimeout(() => {
-            game.style.backgroundImage = "url(./assets/winner.jpg)";
+            game.style.backgroundImage = "url(../assets/winner.jpg)";
             clearInterval(interval);
             clearTimeout(timeOut);
             audio.loop = true;
@@ -169,11 +169,11 @@ btnRestart.addEventListener("click", () => {
 });
 
 btnMenu.addEventListener("click", () => {
-    window.location.href = "inicio.html";
+    window.location.href = "./../index.html";
 });
 
 btnMenuLose.addEventListener("click", () => {
-    window.location.href = "inicio.html";
+    window.location.href = "./../index.html";
 });
 
 btnViewRanking.addEventListener("click", () => {
@@ -343,13 +343,13 @@ function verifyLookPokemon(to){
     }
 
     if (findPikachu) {
-        document.querySelector("#check-pikachu").src = "./assets/icons/check.png";
+        document.querySelector("#check-pikachu").src = "../assets/icons/check.png";
     }
     if (findCharmander) {
-        document.querySelector("#check-charmander").src = "./assets/icons/check.png";
+        document.querySelector("#check-charmander").src = "../assets/icons/check.png";
     }
     if (findZubat) {
-        document.querySelector("#check-zubat").src = "./assets/icons/check.png";
+        document.querySelector("#check-zubat").src = "../assets/icons/check.png";
     }
     
 }
@@ -364,37 +364,37 @@ body.addEventListener("keydown", (event) => {
         case "ArrowLeft":
             if (getRightPosition() < 770) {
                 ash.style.right = `${getRightPosition() + 8}px`;
-                ash.src = "./assets/left.png";
-                pikachu.src = "./assets/pokemons/pikachu-left.png";
-                charmander.src = "./assets/pokemons/charmander-left.png";
-                zubat.src = "./assets/pokemons/zubat-left.png";
+                ash.src = "../assets/left.png";
+                pikachu.src = "../assets/pokemons/pikachu-left.png";
+                charmander.src = "../assets/pokemons/charmander-left.png";
+                zubat.src = "../assets/pokemons/zubat-left.png";
             }
             break;
         case "ArrowRight":
             if (getRightPosition() > 2) {
                 ash.style.right = `${getRightPosition() - 8}px`;
-                ash.src = "./assets/right.png";
-                pikachu.src = "./assets/pokemons/pikachu-right.png";
-                charmander.src = "./assets/pokemons/charmander-right.png";
-                zubat.src = "./assets/pokemons/zubat-right.png";
+                ash.src = "../assets/right.png";
+                pikachu.src = "../assets/pokemons/pikachu-right.png";
+                charmander.src = "../assets/pokemons/charmander-right.png";
+                zubat.src = "../assets/pokemons/zubat-right.png";
             }
             break;
         case "ArrowDown":
             if (getTopPosition() < 625) {
                 ash.style.top = `${getTopPosition() + 8}px`;
-                ash.src = "./assets/front.png";
-                pikachu.src = "./assets/pokemons/pikachu-right.png";
-                charmander.src = "./assets/pokemons/charmander-right.png";
-                zubat.src = "./assets/pokemons/zubat-right.png";
+                ash.src = "../assets/front.png";
+                pikachu.src = "../assets/pokemons/pikachu-right.png";
+                charmander.src = "../assets/pokemons/charmander-right.png";
+                zubat.src = "../assets/pokemons/zubat-right.png";
             }
             break;
         case "ArrowUp":
             if (getTopPosition() > 2) {
                 ash.style.top = `${getTopPosition() - 8}px`;
-                ash.src = "./assets/back.png";
-                pikachu.src = "./assets/pokemons/pikachu-right.png";
-                charmander.src = "./assets/pokemons/charmander-right.png";
-                zubat.src = "./assets/pokemons/zubat-right.png";
+                ash.src = "../assets/back.png";
+                pikachu.src = "../assets/pokemons/pikachu-right.png";
+                charmander.src = "../assets/pokemons/charmander-right.png";
+                zubat.src = "../assets/pokemons/zubat-right.png";
             }
             break;
         default:

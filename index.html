@@ -1,77 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://db.onlinewebfonts.com/c/1c1b3fdb31c3460a94aa5f52255b0388?family=Pokemon+Fire+Red+Regular" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://db.onlinewebfonts.com/c/1c1b3fdb31c3460a94aa5f52255b0388?family=Pokemon+Fire+Red+Regular"
+        rel="stylesheet">
+    <title>Tela Inicial do Game</title>
+    <link rel="stylesheet" href="css/style-inicio.css">
     <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/x-icon">
-    <title>Pokemon Game</title>
 </head>
 
 <body>
 
-    <img src="assets/icons/on.png" alt="volume" class="music-control">
-    <audio src="assets/sound.mp3" autoplay="autoplay" loop=></audio>
+    <img id="bg" src="./assets/tela-inicial.png" alt="Tela Inicial do Game">
 
-    <img src="assets/icons/reset.png" alt="reset" id="reset">
-
-    <div class="scoreboard">
-        <p id="info-text">Encontre os pokemons escondidos!</p>
-        <div class="score-item">
-            <img src="assets/pokemons/pikachu-left.png" alt="character" class="character-scoreboard">
-            <img src="assets/icons/x.png" alt="cross" class="cross-scoreboard" id="check-pikachu">
-        </div>
-        <div class="score-item">
-            <img src="assets/pokemons/charmander-left.png" alt="character" class="character-scoreboard-tortos">
-            <img src="assets/icons/x.png" alt="cross" class="cross-scoreboard" id="check-charmander">
-        </div>
-        <div class="score-item">
-            <img src="assets/pokemons/zubat-left.png" alt="character" class="character-scoreboard-tortos">
-            <img src="assets/icons/x.png" alt="cross" class="cross-scoreboard" id="check-zubat">
-        </div>
-    </div>
-    
-
-    <h1>--</h1>
-    <div class="game">
-        <img src="assets/front.png" alt="character" class="character" id="ash">
-        <img src="assets/pokemons/pikachu-left.png" alt="character" class="character" id="pikachu">
-        <img src="assets/pokemons/charmander-left.png" alt="character" class="character" id="charmander">
-        <img src="assets/pokemons/zubat-left.png" alt="character" class="character" id="zubat">
+    <div class="container-btn">
+        <button class="btn" id="btn-jogar">JOGAR</button>
+        <button class="btn" id="btn-como-jogar">COMO JOGAR</button>
     </div>
 
-    <div class="end-game-options" style="display: none; text-align: center;">
-        <h2>Parabens! Voce venceu!</h2>
-        <p id="final-time"></p>
-        <button id="btn-view-ranking">Ver Ranking</button>
-        <button id="btn-restart">Reiniciar</button>
-        <button id="btn-menu">Menu</button>
+    <div class="dificuldade" style="display: none; text-align: center;">
+        <img src="assets/icons/back.png" alt="voltar" class="back">
+        <h2>Escolha a dificuldade:</h2>
+        <button id="facil" class="btn-dificuldade">Facil</button>
+        <button id="medio" class="btn-dificuldade">Medio</button>
+        <button id="dificil" class="btn-dificuldade">Dificil</button>
     </div>
 
-    <div id="lose-modal" class="end-game-options-lose" style="display: none;">
-        <h2>Voce perdeu!</h2>
-        <p id="missing-info" style="margin-bottom: 20px;"></p>
-        <button id="btn-restart-lose">Reiniciar</button>
-        <button id="btn-close-lose">Ver Mapa</button>
-        <button id="btn-menu-lose">Menu</button>
+    <div class="como-jogar" style="display: none; text-align: center;">
+        <img src="assets/icons/back.png" alt="voltar" class="back">
+        <h2>Como Jogar</h2>
+        <p>Explore o mapa e encontre os tres Pokemons escondidos: Pikachu, Charmander e Zubat.</p>
+        <p>Use as <strong>SETAS</strong> do teclado para mover o Ash. Aproxime-se dos Pokemons para captura-los — eles comecarao a seguir voce!</p>
+        <p>Voce tem 40 a 90 segundos para encontrar todos. O cronometro no topo da tela indica o tempo restante.</p>
+        <p>Se capturar os tres a tempo, voce vence!</p>
+        <p>Se o tempo acabar antes disso, voce vera onde os Pokemons estavam escondidos.</p>
+        <p>Ao vencer, digite seu nome para salvar sua pontuacao no ranking dos melhores jogadores.</p>
+        <p>O ranking exibe os cinco jogadores mais rapidos. Tente bater seu proprio tempo e subir no placar!</p>
+        <p>Dica: quanto mais rapido voce encontrar todos, melhor sera sua colocacao.</p>
     </div>
     
     
-      
-    
-    <div class="ranking" style="display: none; text-align: center;">
-        <input type="text" id="player-name" placeholder="Digite seu nome" />
-        <button id="btn-save-score">Salvar</button>
-        <h3>Ranking:</h3>
-        <ul id="ranking-list"></ul>
-        <button id="btn-back">Voltar</button>
-    </div>
-    
-    
+
 </body>
 
-    <script src="js/script.js"></script>
+<script src="./js/script-inicio.js"></script>
 
 </html>

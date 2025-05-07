@@ -111,21 +111,21 @@ h1 {
 }
 
 #zubat {
-    display: none;
+    /* display: none; */
     width: 100px;
     right: 90px;
     top: 550px;
 }
 
 #pikachu {
-    display: none;
+    /* display: none; */
     width: 70px;
     right: 600px;
     top: 430px;
 }
 
 #charmander {
-    display: none;
+    /* display: none; */
     width: 90px;
     right: 350px;
     top: 150px;
