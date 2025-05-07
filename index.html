@@ -12,13 +12,13 @@
 
 <body>
 
-    <img src="assets/icons/off.png" alt="volume" class="music-control">
-    <audio src="assets/sound.mp3"></audio>
+    <img src="assets/icons/on.png" alt="volume" class="music-control">
+    <audio src="assets/sound.mp3" autoplay="autoplay" loop=></audio>
 
     <img src="assets/icons/reset.png" alt="reset" id="reset">
 
     <div class="scoreboard">
-        <p>Encontre os pokemons escondidos!</p>
+        <p id="info-text">Encontre os pokemons escondidos!</p>
         <div class="score-item">
             <img src="assets/pokemons/pikachu-left.png" alt="character" class="character-scoreboard">
             <img src="assets/icons/x.png" alt="cross" class="cross-scoreboard" id="check-pikachu">
@@ -34,14 +34,42 @@
     </div>
     
 
-    <h1>40</h1>
+    <h1>--</h1>
     <div class="game">
         <img src="assets/front.png" alt="character" class="character" id="ash">
         <img src="assets/pokemons/pikachu-left.png" alt="character" class="character" id="pikachu">
         <img src="assets/pokemons/charmander-left.png" alt="character" class="character" id="charmander">
         <img src="assets/pokemons/zubat-left.png" alt="character" class="character" id="zubat">
-
     </div>
+
+    <div class="end-game-options" style="display: none; text-align: center;">
+        <h2>Parabens! Voce venceu!</h2>
+        <p id="final-time"></p>
+        <button id="btn-view-ranking">Ver Ranking</button>
+        <button id="btn-restart">Reiniciar</button>
+        <button id="btn-menu">Menu</button>
+    </div>
+
+    <div id="lose-modal" class="end-game-options-lose" style="display: none;">
+        <h2>Voce perdeu!</h2>
+        <p id="missing-info" style="margin-bottom: 20px;"></p>
+        <button id="btn-restart-lose">Reiniciar</button>
+        <button id="btn-close-lose">Ver Mapa</button>
+        <button id="btn-menu-lose">Menu</button>
+    </div>
+    
+    
+      
+    
+    <div class="ranking" style="display: none; text-align: center;">
+        <input type="text" id="player-name" placeholder="Digite seu nome" />
+        <button id="btn-save-score">Salvar</button>
+        <h3>Ranking:</h3>
+        <ul id="ranking-list"></ul>
+        <button id="btn-back">Voltar</button>
+    </div>
+    
+    
 </body>
 
     <script src="js/script.js"></script>
