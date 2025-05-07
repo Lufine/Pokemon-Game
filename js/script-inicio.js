@@ -27,7 +27,7 @@ dificuldade.addEventListener('click', function (event) {
 
     if (tempo) {
         localStorage.setItem('tempoJogo', tempo);
-        window.location.href = '../html/game.html';
+        window.location.href = '../Pokemon-Game/html/game.html';
     }
 });
 
